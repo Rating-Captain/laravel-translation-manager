@@ -1,5 +1,5 @@
 {
-  "name": "rating-captain/laravel-translation-manager",
+  "name": "barryvdh/laravel-translation-manager",
   "description": "Manage Laravel Translations",
   "keywords": [
     "laravel",
