@@ -33,8 +33,8 @@ class Controller extends BaseController
         $numChanged = Translation::where('group', $group)->where('status', Translation::STATUS_CHANGED)->count();
 
 
-        $allTranslations = Translation::where('group', $group)->orderBy('key', 'asc')->get();
-        $numTranslations = count($allTranslations);
+        $allTranslations = Translation::where('group', $group)->orderBy('key', 'asc')->paginate(100);
+        $numTranslations = count($allTranslations->data);
         $translations = [];
         foreach($allTranslations as $translation){
             $translations[$translation->key][$translation->locale] = $translation;
@@ -45,6 +45,7 @@ class Controller extends BaseController
             ->with('locales', $locales)
             ->with('groups', $groups)
             ->with('group', $group)
+            ->with('pagination', $allTranslations)
             ->with('numTranslations', $numTranslations)
             ->with('numChanged', $numChanged)
             ->with('editUrl', $group ? action('\Barryvdh\TranslationManager\Controller@postEdit', [$group]) : null)
