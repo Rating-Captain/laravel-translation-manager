@@ -292,6 +292,7 @@
                         </div>
                     </li>
                 <?php endforeach; ?>
+                    {{$pagination}}
                 </ul>
             </form>
             <form class="form-add-locale" method="POST" role="form" action="<?php echo action('\Barryvdh\TranslationManager\Controller@postAddLocale') ?>">
