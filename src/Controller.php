@@ -16,7 +16,7 @@ class Controller extends BaseController
         $this->manager = $manager;
     }
 
-    public function getIndex($group = null, $pageNumber = 0, Request $request)
+    public function getIndex($group = null, Request $request)
     {
         echo $request->get('page') ?? 0;
         $locales = $this->manager->getLocales();
@@ -53,9 +53,9 @@ class Controller extends BaseController
             ->with('deleteEnabled', $this->manager->getConfig('delete_enabled'));
     }
 
-    public function getView($group = null, $pageNumber = 0)
+    public function getView($group = null)
     {
-        return $this->getIndex($group, $pageNumber);
+        return $this->getIndex($group);
     }
 
     protected function loadLocales()
