@@ -1,0 +1,22 @@
+{
+  "name": "laravel-translation-manager",
+  "version": "1.0.0",
+  "description": "[![Tests](https://github.com/barryvdh/laravel-translation-manager/actions/workflows/run-tests.yml/badge.svg)](https://github.com/barryvdh/laravel-translation-manager/actions) [![Packagist License](https://poser.pugx.org/barryvdh/laravel-translation-manager/license.png)](http://choosealicense.com/licenses/mit/) [![Latest Stable Version](https://poser.pugx.org/barryvdh/laravel-translation-manager/version.png)](https://packagist.org/packages/barryvdh/laravel-translation-manager) [![Total Downloads](https://poser.pugx.org/barryvdh/laravel-translation-manager/d/total.png)](https://packagist.org/packages/barryvdh/laravel-translation-manager) [![Fruitcake](https://img.shields.io/badge/Powered%20By-Fruitcake-b2bc35.svg)](https://fruitcake.nl/)",
+  "main": "index.js",
+  "directories": {
+    "test": "tests"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Rating-Captain/laravel-translation-manager.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Rating-Captain/laravel-translation-manager/issues"
+  },
+  "homepage": "https://github.com/Rating-Captain/laravel-translation-manager#readme"
+}
