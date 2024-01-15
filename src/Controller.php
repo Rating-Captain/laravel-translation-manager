@@ -37,8 +37,7 @@ class Controller extends BaseController
         $groups = [''=>'Choose a group'] + $groups;
         $numChanged = Translation::where('group', $group)->where('status', Translation::STATUS_CHANGED)->count();
 
-
-        $allTranslations = Translation::where('group', $group)->orderBy('key', 'asc')->paginate(10);
+        $allTranslations = Translation::where('group', $group)->orderBy('key', 'asc')->paginate(10, ['*'], 'page', $this->request->get('page') ?? null);
         $numTranslations = $allTranslations->count();
         $translations = [];
         foreach($allTranslations->items() as $translation){
