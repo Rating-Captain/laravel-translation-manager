@@ -22,7 +22,6 @@ class Controller extends BaseController
 
     public function getIndex($group = null)
     {
-        echo $this->request->get('page') ?? 0;
         $locales = $this->manager->getLocales();
         $groups = Translation::groupBy('group');
         $excludedGroups = $this->manager->getConfig('exclude_groups');
@@ -37,7 +36,7 @@ class Controller extends BaseController
         $groups = [''=>'Choose a group'] + $groups;
         $numChanged = Translation::where('group', $group)->where('status', Translation::STATUS_CHANGED)->count();
 
-        $allTranslations = Translation::where('group', $group)->orderBy('key', 'asc')->paginate(10, ['*'], 'page', $this->request->get('page') ?? null);
+        $allTranslations = Translation::where('group', $group)->orderBy('key', 'asc')->paginate(200, ['*'], 'page', $this->request->get('page') ?? null);
         $numTranslations = $allTranslations->count();
         $translations = [];
         foreach($allTranslations->items() as $translation){
