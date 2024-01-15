@@ -11,14 +11,18 @@ class Controller extends BaseController
     /** @var \Barryvdh\TranslationManager\Manager  */
     protected $manager;
 
-    public function __construct(Manager $manager)
+    /** @var \Illuminate\Http\Request  */
+    protected $request;
+
+    public function __construct(Manager $manager, Request $request)
     {
         $this->manager = $manager;
+        $this->request = $request;
     }
 
-    public function getIndex($group = null, Request $request)
+    public function getIndex($group = null)
     {
-        echo $request->get('page') ?? 0;
+        echo $this->request->get('page') ?? 0;
         $locales = $this->manager->getLocales();
         $groups = Translation::groupBy('group');
         $excludedGroups = $this->manager->getConfig('exclude_groups');
