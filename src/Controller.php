@@ -34,9 +34,9 @@ class Controller extends BaseController
 
 
         $allTranslations = Translation::where('group', $group)->orderBy('key', 'asc')->paginate(100);
-        $numTranslations = count($allTranslations['data']);
+        $numTranslations = $allTranslations->count();
         $translations = [];
-        foreach($allTranslations as $translation){
+        foreach($allTranslations->items() as $translation){
             $translations[$translation->key][$translation->locale] = $translation;
         }
 
