@@ -231,7 +231,7 @@
         </form>
         <hr>
     <h4>Total: <?= $numTranslations ?>, changed: <?= $numChanged ?></h4>
-        <?php echo $pagination->links() ?> 1
+        CACHE TEST <?php echo $pagination->links() ?> 1
         <table class="table">
             <thead>
             <tr>
@@ -273,7 +273,9 @@
             <?php endforeach; ?>
             </tbody>
         </table>
+        CACHE TEST <?php echo $pagination->links() ?> 1
     <?php else: ?>
+    CTEST
         <fieldset>
             <legend>Supported locales</legend>
             <p>
