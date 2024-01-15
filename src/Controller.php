@@ -18,6 +18,7 @@ class Controller extends BaseController
 
     public function getIndex($group = null, $pageNumber = 0)
     {
+        echo $pageNumber;
         $locales = $this->manager->getLocales();
         $groups = Translation::groupBy('group');
         $excludedGroups = $this->manager->getConfig('exclude_groups');
@@ -52,9 +53,9 @@ class Controller extends BaseController
             ->with('deleteEnabled', $this->manager->getConfig('delete_enabled'));
     }
 
-    public function getView($group = null)
+    public function getView($group = null, $pageNumber = 0)
     {
-        return $this->getIndex($group);
+        return $this->getIndex($group, $pageNumber);
     }
 
     protected function loadLocales()
