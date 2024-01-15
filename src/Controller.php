@@ -16,9 +16,9 @@ class Controller extends BaseController
         $this->manager = $manager;
     }
 
-    public function getIndex($group = null, $pageNumber = 0)
+    public function getIndex($group = null, $pageNumber = 0, Request $request)
     {
-        echo $pageNumber;
+        echo $request->get('page') ?? 0;
         $locales = $this->manager->getLocales();
         $groups = Translation::groupBy('group');
         $excludedGroups = $this->manager->getConfig('exclude_groups');
