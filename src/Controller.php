@@ -16,7 +16,7 @@ class Controller extends BaseController
         $this->manager = $manager;
     }
 
-    public function getIndex($group = null)
+    public function getIndex($group = null, $pageNumber = 0)
     {
         $locales = $this->manager->getLocales();
         $groups = Translation::groupBy('group');
@@ -33,7 +33,7 @@ class Controller extends BaseController
         $numChanged = Translation::where('group', $group)->where('status', Translation::STATUS_CHANGED)->count();
 
 
-        $allTranslations = Translation::where('group', $group)->orderBy('key', 'asc')->paginate(100);
+        $allTranslations = Translation::where('group', $group)->orderBy('key', 'asc')->paginate(10);
         $numTranslations = $allTranslations->count();
         $translations = [];
         foreach($allTranslations->items() as $translation){
