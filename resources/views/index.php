@@ -281,7 +281,7 @@
             <form  class="form-remove-locale" method="POST" role="form" action="<?php echo action('\Barryvdh\TranslationManager\Controller@postRemoveLocale') ?>" data-confirm="Are you sure to remove this locale and all of data?">
                 <input type="hidden" name="_token" value="<?php echo csrf_token(); ?>">
                 <ul class="list-locales">
-                    {{$pagination->links()}}
+                    <?php echo $pagination->links() ?>
                 <?php foreach($locales as $locale): ?>
                     <li>
                         <div class="form-group">
@@ -293,7 +293,7 @@
                         </div>
                     </li>
                 <?php endforeach; ?>
-                    {{$pagination->links()}}
+                    <?php echo $pagination->links() ?>
                 </ul>
             </form>
             <form class="form-add-locale" method="POST" role="form" action="<?php echo action('\Barryvdh\TranslationManager\Controller@postAddLocale') ?>">
