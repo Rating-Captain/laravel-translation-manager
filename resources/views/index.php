@@ -97,8 +97,9 @@
 
             $("#query-submit").click(function (e) {
                 const content = $('#query-context').val()
-                var url = document.location.href+`?query=${content}`;
-                document.location = url;
+                var url = new URL(document.location.href)
+                url.searchParams.set("query", content)
+                document.location = url.href;
             })
         })
     </script>
@@ -238,7 +239,7 @@
     <h4>Total: <?= $numTranslations ?>, changed: <?= $numChanged ?></h4>
     <div class="form-group">
         <label>Search</label>
-        <input type="text" class="form-control" name="new-query" value="{{Request::get('query')}}" id="query-context">
+        <input type="text" class="form-control" name="new-query" value="<?php echo Request::get('query') ?>" id="query-context">
     </div>
     <div class="form-group">
         <input type="submit" value="Search" class="btn btn-primary" id="query-submit"/>
