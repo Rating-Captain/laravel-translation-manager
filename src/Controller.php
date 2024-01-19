@@ -40,7 +40,7 @@ class Controller extends BaseController
         if($queryContext = $this->request->get('query')) {
             $ormQuery = $ormQuery->where('value','LIKE',"%{$queryContext}%");
         }
-        $allTranslations = $ormQuery->orderBy('key', 'asc')->paginate(100, ['*'], 'page', $this->request->get('page') ?? null);
+        $allTranslations = $ormQuery->orderBy('key', 'asc')->paginate(100, ['*'], 'page', $this->request->get('page') ?? null)->appends(request()->query());
         $numTranslations = $allTranslations->count();
         $translations = [];
         foreach($allTranslations->items() as $translation){
