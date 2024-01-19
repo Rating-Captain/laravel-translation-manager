@@ -99,6 +99,7 @@
                 const content = $('#query-context').val()
                 var url = new URL(document.location.href)
                 url.searchParams.set("query", content)
+                url.searchParams.set("page", "1")
                 document.location = url.href;
             })
         })
