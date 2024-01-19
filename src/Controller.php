@@ -36,7 +36,11 @@ class Controller extends BaseController
         $groups = [''=>'Choose a group'] + $groups;
         $numChanged = Translation::where('group', $group)->where('status', Translation::STATUS_CHANGED)->count();
 
-        $allTranslations = Translation::where('group', $group)->orderBy('key', 'asc')->paginate(100, ['*'], 'page', $this->request->get('page') ?? null);
+        $ormQuery = Translation::where('group', $group);
+        if($queryContext = $this->request->get('query');) {
+            $ormQuery = $ormQuery->where('value','LIKE',`%{$queryContext}%`);
+        }
+        $allTranslations = $ormQuery->orderBy('key', 'asc')->paginate(100, ['*'], 'page', $this->request->get('page') ?? null);
         $numTranslations = $allTranslations->count();
         $translations = [];
         foreach($allTranslations->items() as $translation){
