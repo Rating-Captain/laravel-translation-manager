@@ -39,6 +39,7 @@ class Controller extends BaseController
         $ormQuery = Translation::where('group', $group);
         if($queryContext = $this->request->get('query')) {
             $translationsKeys = Translation::where('value','LIKE',"%{$queryContext}%")
+                ->distinct()
                 ->pluck('key')
                 ->toArray();
 
