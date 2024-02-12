@@ -38,7 +38,7 @@ class Controller extends BaseController
 
         $ormQuery = Translation::where('group', $group);
         if($queryContext = $this->request->get('query')) {
-            $ormQuery = $ormQuery->where('value','LIKE',"%{$queryContext}%");
+            $ormQuery = $ormQuery->where('key','LIKE',"%{$queryContext}%");
         }
         $allTranslations = $ormQuery->orderBy('key', 'asc')->paginate(100, ['*'], 'page', $this->request->get('page') ?? null)->appends(request()->query());
         $numTranslations = $allTranslations->count();
