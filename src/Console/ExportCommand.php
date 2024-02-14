@@ -4,6 +4,7 @@ namespace Barryvdh\TranslationManager\Console;
 
 use Barryvdh\TranslationManager\Manager;
 use Illuminate\Console\Command;
+use Illuminate\Support\Facades\Artisan;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputOption;
 
@@ -58,6 +59,9 @@ class ExportCommand extends Command
         else {
             $this->manager->exportTranslations($group, $json);
         }
+
+        Artisan::call('view:clear');
+        Artisan::call('cache:clear');
 
         if (!is_null($group)) {
             $this->info('Done writing language files for '.(($group == '*') ? 'ALL groups' : $group.' group'));

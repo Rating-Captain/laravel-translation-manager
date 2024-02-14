@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Routing\Controller as BaseController;
 use Barryvdh\TranslationManager\Models\Translation;
 use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Str;
 
 class Controller extends BaseController
@@ -148,6 +149,9 @@ class Controller extends BaseController
         }
 
         $this->manager->exportTranslations($group, $json);
+
+        Artisan::call('view:clear');
+        Artisan::call('cache:clear');
 
         return ['status' => 'ok'];
     }
