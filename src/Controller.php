@@ -39,7 +39,7 @@ class Controller extends BaseController
 
         $ormQuery = Translation::where('group', $group);
         if($queryContext = $this->request->get('query')) {
-            $translationsKeys = Translation::whereRaw("UPPER(`ltm_translations`.`value`) LIKE '%". strtoupper($queryContext)."%'")
+            $translationsKeys = Translation::whereRaw("LOWER(`ltm_translations`.`value`) LIKE '%". strtolower($queryContext)."%'")
                 ->distinct()
                 ->pluck('key')
                 ->toArray();
