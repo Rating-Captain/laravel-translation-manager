@@ -5,6 +5,7 @@ use Illuminate\Routing\Controller as BaseController;
 use Barryvdh\TranslationManager\Models\Translation;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Artisan;
+use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Str;
 
 class Controller extends BaseController
@@ -153,7 +154,9 @@ class Controller extends BaseController
         Artisan::call('view:clear');
         Artisan::call('cache:clear');
 
-        return ['status' => 'ok'];
+        Session::flash('successPublish', 'Translations published!');
+
+        return redirect()->back();
     }
 
     public function postAddGroup(Request $request)
